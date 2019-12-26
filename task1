@@ -1,0 +1,7 @@
+create table installation(emp_number varchar2(30)not null,task_name varchar2(30)not naull,task_deadline date not null,
+task_status varchar2(30)check('check','pending'),completed_date check(completed_on < sysdate),date check(comleted_on<27-12-2019);
+
+
+instet into installation(emp_id,task_name,task_deadline,task_status,completed_date)values(1,'oracle_installation',
+20-12-2019,sucess,26-12-2019);
+
