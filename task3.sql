@@ -47,7 +47,6 @@ values(144,'kumar',20,12,1,'yes','28-dec-2019');
 --values(220,'Gowtham',980,888,2,'yes','28-dec-2019');
                              
                              
- 
 create table book_stock(stock_id number(10),
 book_id number(20),
 quantity number(20),
@@ -56,7 +55,6 @@ constraint book_fk foreign key (book_id) references books(book_id));
 
 insert into book_stock(stock_id,book_id,quantity)values(1000,11,200);
 insert into book_stock(stock_id,book_id,quantity)values(1002,12,218);
-insert into book_stock(stock_id,book_id,quantity)values(1021,22,39);
 insert into book_stock(stock_id,book_id,quantity)values(1021,22,39);
 
 create table order_item(item_id number(10),
@@ -76,4 +74,3 @@ select quantity from book_stock where book_id=12;
 select sum(quantity) from order_item where book_id=12;
 select book_name,(select sum(quantity) from order_item where book_id=b.book_id)from books b;
 select book_name,(select quantity from book_stock where book_id=b.book_id)from books b;
-                                                          
