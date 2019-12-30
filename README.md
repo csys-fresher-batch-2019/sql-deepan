@@ -9,7 +9,7 @@
 ### Featuers 1: user details.
 
 ```sql
-create table users(user_id number not null,
+create table users(user_id number,
 user_name varchar2(30) not null,
 email_id varchar2(30)not null,
 epassword varchar2(8)not null,
