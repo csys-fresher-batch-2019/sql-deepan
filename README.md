@@ -18,8 +18,7 @@ gender varchar2(10)not null,
 constraint users_uq unique(email_id,mobile_num),
 constraint user_id_pk primary key(user_id),
 constraint mobile_num_ck check(mobile_num not like('%[^0-9]%')),
-constraint gender_ck 
-check(gender in('male','female')));
+constraint gender_ck check(gender in('male','female')));
 
 insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
 values(398380,'Kumar','kumar@gmail.com','kum',9047379880,'male');
@@ -84,34 +83,34 @@ insert into theater(theater_name,theater_id,theater_address,theater_rating,movie
 values('Rohini',03,'Rohini koyambedu',5,'OK Charlie',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('PVR',01,'sky walk chennai',3,'charlie',4);
+values('PVR',01,'sky walk chennai',4,'charlie',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
 values('inox',02,'chandra mall chennai',3,'Charlie',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('Rohini',03,'Rohini koyambedu',3,'Charlie',4);
+values('Rohini',03,'Rohini koyambedu',5,'Charlie',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('PVR',01,'sky walk chennai',3,'Arjun Reddy',4);
+values('PVR',01,'sky walk chennai',4,'Arjun Reddy',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
 values('inox',02,'chandra mall chennai',3,'Arjun Reddy',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('Rohini',03,'Rohini koyambedu',3,'Arjun Reddy',4);
+values('Rohini',03,'Rohini koyambedu',5,'Arjun Reddy',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('PVR',01,'sky walk chennai',3,'',4);
+values('PVR',01,'sky walk chennai',4,'Arjun Reddy',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
 values('inox',02,'chandra mall chennai',3,'OK kanmani',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('Rohini',03,'Rohini koyambedu',3,'OK kanmani',4);
+values('Rohini',03,'Rohini koyambedu',5,'OK kanmani',4);
 
 insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
-values('PVR',01,'sky walk chennai',3,'OK kanmani',4);
+values('PVR',01,'sky walk chennai',4,'OK kanmani',4);
 
 select * from theater;
 drop table theater;
