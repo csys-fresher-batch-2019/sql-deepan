@@ -20,7 +20,7 @@ constraint user_id_pk primary key(user_id),
 constraint mobile_num_ck check(mobile_num not like('%[^0-9]%')),
 constraint gender_ck 
 check(gender in('male','female')));
-```
+
 insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
 values(398380,'Kumar','kumar@gmail.com','kum',9047379880,'male');
 
@@ -60,8 +60,10 @@ values(398391,'Prasanth','prasanth@gmail.com','pra',9047379891,'male');
 select * from users;
 drop table users;
 
+```
 ### Features 2: theater details
 
+```sql
 create table theater(theater_name varchar2(30),
     theater_id number,
     theater_address varchar2(40) not null,
@@ -114,3 +116,4 @@ values('PVR',01,'sky walk chennai',3,'OK kanmani',4);
 select * from theater;
 drop table theater;
 
+```
