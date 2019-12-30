@@ -6,7 +6,7 @@
 
 * user should able to view all movies.
 
-### Featuers 1: Create user details.
+### Featuers 1: user details.
 
 ```sql
 create table users(user_id number not null,
@@ -60,4 +60,57 @@ values(398391,'Prasanth','prasanth@gmail.com','pra',9047379891,'male');
 select * from users;
 drop table users;
 
-### Features 2: 
+### Features 2: theater details
+
+create table theater(theater_name varchar2(30),
+    theater_id number,
+    theater_address varchar2(40) not null,
+    theater_rating number,
+    movie_name varchar2(30),
+    movie_rating number not null,
+    constraint theater_id_pk primary key(theater_id),
+    constraint theater_rating_ck check(theater_rating<=5),
+    constraint movie_rating_ck check(movie_rating<=5));
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('PVR',01,'sky walk chennai',4,'OK kanmani',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('inox',02,'chandra mall chennai',3,'OK kanmani',3);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('Rohini',03,'Rohini koyambedu',5,'OK Charlie',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('PVR',01,'sky walk chennai',3,'charlie',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('inox',02,'chandra mall chennai',3,'Charlie',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('Rohini',03,'Rohini koyambedu',3,'Charlie',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('PVR',01,'sky walk chennai',3,'Arjun Reddy',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('inox',02,'chandra mall chennai',3,'Arjun Reddy',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('Rohini',03,'Rohini koyambedu',3,'Arjun Reddy',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('PVR',01,'sky walk chennai',3,'',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('inox',02,'chandra mall chennai',3,'OK kanmani',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('Rohini',03,'Rohini koyambedu',3,'OK kanmani',4);
+
+insert into theater(theater_name,theater_id,theater_address,theater_rating,movie_name,movie_rating)
+values('PVR',01,'sky walk chennai',3,'OK kanmani',4);
+
+select * from theater;
+drop table theater;
+
