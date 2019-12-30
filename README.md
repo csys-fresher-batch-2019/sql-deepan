@@ -1,4 +1,4 @@
-# Ticket_Booking app
+# Movie_Ticket_Booking_app
 
 * https://ticketbooking.in
 
