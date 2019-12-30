@@ -11,11 +11,11 @@
 ```sql
 create table users(user_id number,
 user_name varchar2(30) not null,
-email_id varchar2(30)not null,
+email_id varchar2(30),
 epassword varchar2(8)not null,
-mobile_num number(10)not null,
+mobile_num number(10),
 gender varchar2(10)not null,
-
+constraint users_uq unique(email_id,mobile_num),
 constraint user_id_pk primary key(user_id),
 constraint mobile_num_ck check(mobile_num not like('%[^0-9]%')),
 constraint gender_ck 
