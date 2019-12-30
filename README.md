@@ -4,9 +4,9 @@
 
 ## Features
 
-* user should able to view all movies.
+* User information.
 
-### Featuers 1: user details.
+### Featuers 1: User information.
 
 ```sql
 create table users(user_id number,
