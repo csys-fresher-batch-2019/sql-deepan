@@ -30,7 +30,7 @@ insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie'
 
 select * from movie;
 
-```
+
 
 | movie_name        | theater_id | movie type | movie_status |            
 |-------------------|------------|----------- |--------------|
@@ -38,6 +38,7 @@ select * from movie;
 | pyar prema kadhal |      2     |  Tamil     |   Available  |
 | Okadhal Kanmani   |      3     |  Tamil     |   Available  |
 
+```
 
 ### Featuers 2: Theater information.
 
@@ -76,7 +77,6 @@ values('Phoniex',08,200,'EA Chennai',5);
 
 select * from theater;
 
-```
 
 | theater_name | theater_id | number_seats | theater_address  | theater_rating |
 |--------------|------------|--------------|------------------|----------------|
@@ -84,6 +84,7 @@ select * from theater;
 |     Inox     |      2     |      200     |  Mayajal chennai |        3       |
 |    Rohini    |      3     |      250     | Rohini koyambedu |        4       |
 
+```
 
 ### Featuers 3: Users information.
 
@@ -138,7 +139,6 @@ values(398391,'Prasanth','prasanth@gmail.com','pra',9047379891,'male');
 
 select * from users;
 
-```
 
 | user_id | user_name | email_id            | epassword | mobile_num | gender |
 |---------|-----------|---------------------|-----------|------------|--------|
@@ -146,7 +146,7 @@ select * from users;
 | 398381  |   ajmal   | ajmail@chainsys.com |    ajm    | 9047379881 |  male  |
 | 398382  |   sivika  |   sivika@gmail.com  |    siv    | 9047379882 |  male  |
 
-
+```
 
 ### Featuers 4: Booked information.
 
@@ -187,7 +187,6 @@ values(16,398387,'pyar prema kadhal',80,8000,'complete','3 pm','normal');
 
 select * from booked;
 
-```
 
 | booked_id | user_id | movie_name        | booked_seats | amount | payment_status | booked_date | movie_timing | seat_type |
 |-----------|---------|-------------------|--------------|--------|----------------|-------------|--------------|-----------|
@@ -195,3 +194,5 @@ select * from booked;
 |     22    | 398390  | OK kanmani        |       2      |   240  |   processing   | 02-Jan-2020 |     3 pm     |   normal  |
 |     33    | 398388  | OK kanmani        |       1      |   200  |    complete    | 02-Jan-2020 |     12 pm    |  premium  |
 |     44    | 398386  | pyar prema kadhal |       3      |   360  |     decline    | 02-Jan-2020 |     3 pm     |   normal  |
+
+```
