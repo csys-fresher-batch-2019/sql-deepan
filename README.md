@@ -78,12 +78,11 @@ select * from theater;
 
 ```
 
-| theater_name | theater_id |number_seats| theater_address       | theater_rating |
-|--------------|------------|------------------------------------|----------------|
-|      PVR     |     01     |     300    |  sky walk chennai     |        4       |
-|     Inox     |     02     |     250    |  chandra mall chennai |        3       |
-|    Rohini    |     03     |     300    |  Rohini koyambedu     |        3       |
-
+| theater_name | theater_id | number_seats | theater_address  | theater_rating |
+|--------------|------------|--------------|------------------|----------------|
+|      PVR     |      1     |      300     | Sky walk chennai |        5       |
+|     Inox     |      2     |      200     |  Mayajal chennai |        3       |
+|    Rohini    |      3     |      250     | Rohini koyambedu |        4       |
 
 
 ### Featuers 3: Users information.
