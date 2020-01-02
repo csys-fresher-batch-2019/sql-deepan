@@ -10,83 +10,91 @@
 
 ```sql
 create table movie(movie_name varchar2(20) not null,
-        theater_id number,
+        movie_id number,  
         movie_type varchar2(30) not null,
-        movie_status varchar2(40)not null,
-        constraint theater_id_pk primary key(theater_id),
-        constraint movie_type_ck check(movie_type in('English','Tamil','Hindi','Telugu','Malayalam')),
-        constraint movie_status_ck check(movie_status in('Available','Notavailable')));
+        price number,
+        constraint movie_id primary key (movie_id),
+        constraint movie_type_ck check(movie_type in('English','Tamil','Hindi','Telugu','Malayalam'))); 
 
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie',01,'Malayalam','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie',02,'Malayalam','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie',03,'Malayalam','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('pyar prema kadhal',04,'Tamil','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('pyar prema kadhal',05,'Tamil','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('Okadhal Kanmani',06,'Tamil','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('Okadhal Kanmani',07,'Tamil','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('Okadhal Kanmani',08,'Tamil','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie',09,'Malayalam','Available');
-insert into movie(movie_name,theater_id,movie_type,movie_status)values('charlie',10,'Tamil','Available');
+insert into movie(movie_name,movie_id,movie_type,price)
+values('charlie',111,'Hindi',200);
+
+insert into movie(movie_name,movie_id,movie_type,price)
+values('pyar prema kadhal',222,'Tamil',100);
+
+insert into movie(movie_name,movie_id,movie_type,price)
+values('Okadhal Kanmani',333,'Tamil',150);
 
 select * from movie;
 
-
-
-| movie_name        | theater_id | movie type | movie_status |            
-|-------------------|------------|----------- |--------------|
-| charlie           |      1     |  Malayalam |   Available  |  
-| pyar prema kadhal |      2     |  Tamil     |   Available  |
-| Okadhal Kanmani   |      3     |  Tamil     |   Available  |
+| movie_name        | movie_id | movie_type | price |
+|-------------------|----------|------------|-------|
+| Okadhal Kanmani   | 333      | Tamil      | 150   |
+| charlie           | 111      | Hindi      | 200   |
+| pyar prema kadhal | 222      | Tamil      | 100   |
 
 ```
 
-### Featuers 2: Theater information.
+### Featuers 2: Theatre information.
 
 ```sql
-create table theater(theater_name varchar2(30),
-    theater_id number,
+create table theatre(theatre_name varchar2(30),
+    theatre_id number,
     number_seats number,
-    theater_address varchar2(40) not null,
-    theater_rating number,
-    constraint theater_uq unique(theater_name,theater_id),
-    constraint theater_fk foreign key (theater_id) references movie (theater_id));
+    theatre_address varchar2(40) not null,
+    theatre_rating number,
+    constraint theatre_uq unique(theatre_name,theatre_id),
+    constraint theatre_id primary key (theatre_id));
 
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('PVR',01,300,'sky walk chennai',4);
+insert into theater(theatre_name,theatre_id,number_seats,theatre_address,theare_rating)
+values('PVR',01,100,'sky walk chennai',4);
 
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
+insert into theater(theatre_name,theatre_id,number_seats,theatre_address,theare_rating)
 values('inox',02,200,'chandra mall chennai',3);
 
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
+insert into theater(theatre_name,theatre_id,number_seats,theatre_address,theare_rating)
 values('Rohini',03,300,'Rohini koyambedu',4);
 
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('Imax',04,140,'Mayajal chennai',5);
+select * from theatre;
 
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('Vidhya',05,250,'Tambaram',4);
-
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('MR',06,100,'MR Koyambedu',3);
-
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('Imax',07,180,'Luxe Chenai',4);
-
-insert into theater(theater_name,theater_id,number_seats,theater_address,theater_rating)
-values('Phoniex',08,200,'EA Chennai',5);
-
-select * from theater;
-
-
-| theater_name | theater_id | number_seats | theater_address  | theater_rating |
-|--------------|------------|--------------|------------------|----------------|
-|      PVR     |      1     |      300     | Sky walk chennai |        5       |
-|     Inox     |      2     |      200     |  Mayajal chennai |        3       |
-|    Rohini    |      3     |      250     | Rohini koyambedu |        4       |
+| theatre_name | theater_id | number_seats | theatre_address      | theatre_rating |
+|--------------|------------|--------------|----------------------|----------------|
+| PVR          | 1          | 100          | sky walk chennai     | 4              |
+| inox         | 2          | 200          | chandra mall chennai | 3              |
+| Rohini       | 3          | 300          | Rohini koyambedu     | 4              |
 
 ```
 
-### Featuers 3: Users information.
+### Featuers 3: movie_theatre information.
+
+```sql
+
+create table movie_theatre(movie_id number not null,
+        theatre_id number not null,
+        active number default 1,
+        constraint theatre_id_fk foreign key (theatre_id) references theatre (theatre_id),
+        constraint movie_id_fk foreign key (movie_id) references movie (movie_id),
+        constraint active_ck check(active in(1,0)));
+
+insert into movie_theatre(movie_id,theater_id)
+values(111,01);
+insert into movie_theatre(movie_id,theater_id)
+values(222,02);
+insert into movie_theatre(movie_id,theater_id)
+values(333,03);
+
+
+select * from movie_theatre;
+
+| movie_id | theatre_id | active |
+|----------|------------|--------|
+| 111      | 1          | 1      |
+| 222      | 2          | 1      |
+| 333      | 3          | 1      |
+
+```
+
+### Featuers 4: User informations.
 
 ```sql
 
@@ -113,42 +121,16 @@ values(398382,'Ajmal A','ajmal@gmail.com','ajmal',9047379882,'male');
 insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
 values(398383,'sujitha','suji@gmail.com','suj',9047379883,'female');
 
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398384,'nivi','nivi@gmail.com','niv',9047379884,'female');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398385,'suri','suri@gmail.com','sur',9047379885,'male');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398386,'mohan','mohan@gmail.com','moh',9047379886,'male');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398387,'siveka','siveka@gmail.com','siv',9047379887,'male');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398388,'arjun','arjun@gmail.com','arj',9047379888,'male');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398389,'sruthi','sruthi@gmail.com','sru',9047379889,'female');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398390,'john','john@gmail.com','joh',9047379890,'male');
-
-insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
-values(398391,'Prasanth','prasanth@gmail.com','pra',9047379891,'male');
-
 select * from users;
 
-
-| user_id | user_name | email_id            | epassword | mobile_num | gender |
-|---------|-----------|---------------------|-----------|------------|--------|
-| 398380  |   sandy   |   sandy@gmail.com   |    san    | 9047379880 |  male  |
-| 398381  |   ajmal   | ajmail@chainsys.com |    ajm    | 9047379881 |  male  |
-| 398382  |   sivika  |   sivika@gmail.com  |    siv    | 9047379882 |  male  |
+| user_id | user_name | gmail_id        | epassword | mobile_number | gender |
+|---------|-----------|-----------------|-----------|---------------|--------|
+| 398380  | Kumar     | kumar@gmail.com | kum       | 9047379880    | male   |
+| 398381  | sandy     | sandy@gmail.com | san       | 9047379881    | male   |
+| 398382  | Ajmal A   | ajmal@gmail.com | ajmal     | 9047379882    | male   |
 
 ```
-
-### Featuers 4: Booked information.
+### Featuers 4: Booked informations.
 
 ```sql
 
