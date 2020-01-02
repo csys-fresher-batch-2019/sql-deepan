@@ -147,6 +147,19 @@ create table booked(booked_id number not null primary key,
         
         create sequence booked_id start with 1 increment by 1;
         
+        insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
+values(booked_id.nextval,398383,10,'complete','premium');
+
+insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
+values(booked_id.nextval,398384,7,'complete','premium');
+
+insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
+values(booked_id.nextval,398385,8,'complete','premium');
+
+insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
+values(booked_id.nextval,398386,10,'complete','premium');
+
+        
 | booked_id | user_id | booked_seats | payment_status | booked_timing                  | price | seat_type |
 |-----------|---------|--------------|----------------|--------------------------------|-------|-----------|
 | 1         | 398383  | 10           | complete       | 02-01-20 07:39:59.521000000 PM | 120   | premium   |
