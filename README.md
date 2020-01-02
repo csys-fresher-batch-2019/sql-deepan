@@ -134,47 +134,23 @@ select * from users;
 
 ```sql
 
-create table booked(booked_id number,
+create table booked(booked_id number not null primary key,
         users_id number not null,
-        movie_name varchar2(20),
         booked_seats number not null,
-        amount number not null,
+        amount number,
         payment_status varchar2(30) not null,
         booked_date timestamp default systimestamp,
-        movie_timing timestamp,
         seat_type varchar2(100),
-        constraint booked_id_pk primary key(booked_id),
         constraint users_id_fk foreign key(users_id) references users(user_id),
         constraint payment_status_ck check(payment_status in('complete','pending','cancelled')),
         constraint seat_type_ck check(seat_type in('normal','premium','vip')));
         
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(11,398382,'charlie',2,500,'complete','12 pm','premium');
-
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(12,398383,'pyar prema kadhal',5,1000,'complete','3 pm','vip');
-
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(13,398384,'charlie',8,1600,'complete','12 pm','vip');
-
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(14,398385,'pyar prema kadhal',2,500,'complete','3 pm','premium');
-
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(15,398386,'charlie',5,500,'complete','12 pm','normal');
-
-insert into booked(booked_id,users_id,movie_name,booked_seats,amount,payment_status,movie_timing,seat_type)
-values(16,398387,'pyar prema kadhal',80,8000,'complete','3 pm','normal');
-
-
-select * from booked;
-
-
-| booked_id | user_id | movie_name        | booked_seats | amount | payment_status | booked_date | movie_timing | seat_type |
-|-----------|---------|-------------------|--------------|--------|----------------|-------------|--------------|-----------|
-|     11    | 398382  | charlie           |       5      |   900  |    complete    | 02-Jan-2020 |     12 pm    |    vip    |
-|     22    | 398390  | OK kanmani        |       2      |   240  |   processing   | 02-Jan-2020 |     3 pm     |   normal  |
-|     33    | 398388  | OK kanmani        |       1      |   200  |    complete    | 02-Jan-2020 |     12 pm    |  premium  |
-|     44    | 398386  | pyar prema kadhal |       3      |   360  |     decline    | 02-Jan-2020 |     3 pm     |   normal  |
+        create sequence booked_id start with 1 increment by 1;
+        
+| booked_id | user_id | booked_seats | payment_status | booked_timing                  | price | seat_type |
+|-----------|---------|--------------|----------------|--------------------------------|-------|-----------|
+| 1         | 398383  | 10           | complete       | 02-01-20 07:39:59.521000000 PM | 120   | premium   |
+| 2         | 398384  | 7            | complete       | 02-01-20 07:40:09.769000000 PM | 100   | normal    |
+| 3         | 398385  | 8            | complete       | 02-01-20 07:40:16.019000000 PM | 150   | vip       |
 
 ```
