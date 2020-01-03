@@ -171,7 +171,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 ### Scenarios:
 
 
- select * from movie_theatre where movie_timing ='12:00:00 pm';
+* select * from movie_theatre where movie_timing ='12:00:00 pm';
 
 
 | movie_id | theater_id | active | movie_time  |
@@ -182,7 +182,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 
 
 
- select * from movie where movie_id ='111';
+* select * from movie where movie_id ='111';
 
 | movie_name | movie_id | movie_type | price |
 |------------|----------|------------|-------|
@@ -190,16 +190,17 @@ values(booked_id.nextval,398386,10,'complete','premium');
 
 
 
-select * from movie_theatre mt inner join movie m on mt.movie_id = m.movie_id inner join theatre t on mt.theatre_id =t.theatre_id;
-
-| active | movie_time  | movie_name        | movie_id | movie_type | price | theatre_name |     |                  |   |
-|--------|-------------|-------------------|----------|------------|-------|--------------|-----|------------------|---|
-| 1      | 3:00:00 pm  | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4 |
-| 1      | 3:00:00 pm  | pyar prema kadhal | 222      | Tamil      | 100   | PVR          | 100 | sky walk chennai | 3 |
-| 1      | 12:00:00 pm | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4 |
+* select * from movie_theatre mt inner join movie m on mt.movie_id = m.movie_id inner join theatre t on mt.theatre_id =t.theatre_id;
 
 
-select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
+| active | movie_time  | movie_name        | movie_id | movie_type | price | theatre_name |price|theatre_name      | theatre_rating  |
+|--------|-------------|-------------------|----------|------------|-------|--------------|-----|------------------|-----------------|
+| 1      | 3:00:00 pm  | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4               |
+| 1      | 3:00:00 pm  | pyar prema kadhal | 222      | Tamil      | 100   | PVR          | 100 | sky walk chennai | 3               |
+| 1      | 12:00:00 pm | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4               |
+
+
+* select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
 
 | movi_name         | theater_name | movie_time  |
 |-------------------|--------------|-------------|
