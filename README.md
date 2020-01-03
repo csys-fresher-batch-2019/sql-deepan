@@ -175,7 +175,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 ### Scenarios:
 
 
-* select * from movie_theatre where movie_timing ='12:00:00 pm';
+1. select * from movie_theatre where movie_timing ='12:00:00 pm';
 
 
 | movie_id | theater_id | active | movie_time  |
@@ -186,7 +186,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 
 
 
-* select * from movie where movie_id ='111';
+2. select * from movie where movie_id ='111';
 
 | movie_name | movie_id | movie_type | price |
 |------------|----------|------------|-------|
@@ -194,7 +194,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 
 
 
-* select * from movie_theatre mt inner join movie m on mt.movie_id = m.movie_id inner join theatre t on mt.theatre_id =t.theatre_id;
+3. select * from movie_theatre mt inner join movie m on mt.movie_id = m.movie_id inner join theatre t on mt.theatre_id =t.theatre_id;
 
 
 | active | movie_time  | movie_name        | movie_id | movie_type | price | theatre_name |price|theatre_name      | theatre_rating  |
@@ -205,7 +205,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 
 
 
-* select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
+4. select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
 
 | movi_name         | theater_name | movie_time  |
 |-------------------|--------------|-------------|
@@ -217,7 +217,8 @@ values(booked_id.nextval,398386,10,'complete','premium');
 | pyar prema kadhal | inox         | 6:00:00 pm  |
 | Okadhal Kanmani   | Rohini       | 3:00:00 pm  |
 
-Functions:
+
+5.Functions:
 
 create or replace function get_booked_seats(i_users_id number)
 Return number as 
