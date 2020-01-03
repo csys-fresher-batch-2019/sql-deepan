@@ -111,7 +111,7 @@ create table users(user_id number,
         constraint users_uq unique(email_id,mobile_num),
         constraint user_id_pk primary key(user_id),
         constraint mobile_num_ck check(mobile_num not like('%[^0-9]%')),
-        constraint gender_ck check(gender in('male','female')));
+        constraint gender_ck check(gender in('male','female','others')));
 
 insert into users(user_id,user_name,email_id,epassword,mobile_num,gender)
 values(398380,'Kumar','kumar@gmail.com','kum',9047379880,'male');
