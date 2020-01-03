@@ -216,5 +216,19 @@ values(booked_id.nextval,398386,10,'complete','premium');
 | pyar prema kadhal | inox         | 6:00:00 pm  |
 | Okadhal Kanmani   | Rohini       | 3:00:00 pm  |
 
+Functions:
+
+create or replace function get_booked_seats(i_users_id number)
+Return number as 
+
+v_ticket_booked number;
+
+Begin
+
+select booked_seats into v_ticket_booked from booked
+where users_id =i_users_id ;
+
+Return v_ticket_booked;
+END get_booked_seats;
 
 
