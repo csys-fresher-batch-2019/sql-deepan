@@ -73,25 +73,28 @@ select * from theatre;
 create table movie_theatre(movie_id number not null,
         theatre_id number not null,
         active number default 1,
+        movie_timing varchar2(20),
         constraint theatre_id_fk foreign key (theatre_id) references theatre (theatre_id),
         constraint movie_id_fk foreign key (movie_id) references movie (movie_id),
         constraint active_ck check(active in(1,0)));
 
-insert into movie_theatre(movie_id,theater_id)
-values(111,01);
-insert into movie_theatre(movie_id,theater_id)
-values(222,02);
-insert into movie_theatre(movie_id,theater_id)
-values(333,03);
+insert into movie_theatre(movie_id,theatre_id,movie_timing)
+values(111,01,'12:00:00 pm');
+
+insert into movie_theatre(movie_id,theatre_id,movie_timing)
+values(222,01,'8:00:00 pm');
+
+insert into movie_theatre(movie_id,theatre_id,movie_timing)
+values(333,01,'6:00:00 pm');
 
 
 select * from movie_theatre;
 
-| movie_id | theatre_id | active |
-|----------|------------|--------|
-| 111      | 1          | 1      |
-| 222      | 2          | 1      |
-| 333      | 3          | 1      |
+| movie_id | theatre_id | active |movie_time  | 
+|----------|------------|--------|------------|
+| 111      | 1          | 1      |12:00:00 pm |
+| 222      | 2          | 1      |8:00:00 pm  |
+| 333      | 3          | 1      |6:00:00 pm  |
 
 ```
 
