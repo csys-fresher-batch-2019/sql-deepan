@@ -204,6 +204,7 @@ values(booked_id.nextval,398386,10,'complete','premium');
 | 1      | 12:00:00 pm | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4               |
 
 
+
 * select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
 
 | movi_name         | theater_name | movie_time  |
