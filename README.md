@@ -12,26 +12,27 @@
 create table movie(movie_name varchar2(20) not null,
         movie_id number,  
         movie_type varchar2(30) not null,
+        movie_rating number,
         price number,
         constraint movie_id primary key (movie_id),
         constraint movie_type_ck check(movie_type in('English','Tamil','Hindi','Telugu','Malayalam'))); 
 
-insert into movie(movie_name,movie_id,movie_type,price)
-values('charlie',111,'Hindi',200);
+insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
+values('charlie',111,'Hindi',200,'8');
 
-insert into movie(movie_name,movie_id,movie_type,price)
-values('pyar prema kadhal',222,'Tamil',100);
+insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
+values('pyar prema kadhal',222,'Tamil',100,'7');
 
-insert into movie(movie_name,movie_id,movie_type,price)
-values('Okadhal Kanmani',333,'Tamil',150);
+insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
+values('Okadhal Kanmani',333,'Tamil',150'8');
 
 select * from movie;
 
-| movie_name        | movie_id | movie_type | price |
-|-------------------|----------|------------|-------|
-| Okadhal Kanmani   | 333      | Tamil      | 150   |
-| charlie           | 111      | Hindi      | 200   |
-| pyar prema kadhal | 222      | Tamil      | 100   |
+| movie_name        | movie_id | movie_type | price |movie_rating|
+|-------------------|----------|------------|-------|------------|
+| Okadhal Kanmani   | 333      | Tamil      | 150   |    8       |
+| charlie           | 111      | Hindi      | 200   |    7       |
+| pyar prema kadhal | 222      | Tamil      | 100   |    8       |
 
 ```
 
