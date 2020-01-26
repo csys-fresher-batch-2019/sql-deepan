@@ -9,30 +9,30 @@
 ### Featuers 1: Movie information.
 
 ```sql
-create table movie(movie_name varchar2(20) not null,
+create table movie(
         movie_id number,  
+        movie_name varchar2(20) not null,
         movie_type varchar2(30) not null,
+        movie_language varchar2(30)not null,
         movie_rating number,
-        price number,
+        movie_duration number,
+        released_date date,
         constraint movie_id primary key (movie_id),
-        constraint movie_type_ck check(movie_type in('English','Tamil','Hindi','Telugu','Malayalam'))); 
-
-insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
-values('charlie',111,'Hindi',200,'8');
-
-insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
-values('pyar prema kadhal',222,'Tamil',100,'7');
-
-insert into movie(movie_name,movie_id,movie_type,price,movie_rating)
-values('Okadhal Kanmani',333,'Tamil',150'8');
+        constraint movie_type_ck check(movie_type in('comedy','horror','action','historical','Romance')),
+        constraint movie_language_ck check(movie_language in('English','Tamil','Hindi','Telugu','Malayalam'))); 
+        create sequence movie_id_seq start with 999;
+        
+        
+insert into movie(movie_id,movie_name,movie_type,movie_language,movie_rating,movie_duration,released_date)
+values(movie_id_seq.nextval,'charlie','Romance','Hindi',5,3,to_date('2020-01-25','YYYY-MM-DD'));
 
 select * from movie;
 
-| movie_name        | movie_id | movie_type | price |movie_rating|
-|-------------------|----------|------------|-------|------------|
-| Okadhal Kanmani   | 333      | Tamil      | 150   |    8       |
-| charlie           | 111      | Hindi      | 200   |    7       |
-| pyar prema kadhal | 222      | Tamil      | 100   |    8       |
+| movie_name        | movie_id | movie_tpe | movie_language | movie_rating | movie_duration | released_date |
+|-------------------|----------|-----------|----------------|--------------|----------------|---------------|
+| charlie           | 999      | Romance   | Hindi          | 5            | 3              | 25-01-20      |
+| Ok kanmani        | 1000     | Romance   | Tamil          | 4            | 3              | 12-10-19      |
+| Pyar prema kadhal | 1001     | Romance   | Tamil          | 5            | 2              | 22-10-19      |
 
 ```
 
@@ -70,13 +70,17 @@ select * from theatre;
 
 ```sql
 
-create table movie_theatre(movie_id number not null,
+create table movie_theatre( movie_theatre_id number , 
+        movie_id number not null,
         theatre_id number not null,
         active number default 1,
+        price number not null,
         movie_timing varchar2(20),
+        constraint movie_theatre_id_pk primary key(movie_theatre_id),
         constraint theatre_id_fk foreign key (theatre_id) references theatre (theatre_id),
         constraint movie_id_fk foreign key (movie_id) references movie (movie_id),
         constraint active_ck check(active in(1,0)));
+        create sequence movie_theatre_id_seq start with 111;
 
 insert into movie_theatre(movie_id,theatre_id,movie_timing)
 values(111,01,'12:00:00 pm');
@@ -90,12 +94,12 @@ values(333,01,'6:00:00 pm');
 
 select * from movie_theatre;
 
-| movie_id | theatre_id | active |movie_time  | 
-|----------|------------|--------|------------|
-| 111      | 1          | 1      |12:00:00 pm |
-| 222      | 2          | 1      |8:00:00 pm  |
-| 333      | 3          | 1      |6:00:00 pm  |
-
+| movie_theatre_id | movie_id | theatre_id | active | price |       |
+|------------------|----------|------------|--------|-------|-------|
+| 116              | 999      | 1131       | 1      | 150   | 12:00 |
+| 117              | 1000     | 1133       | 1      | 100   | 01:00 |
+| 118              | 999      | 1132       | 1      | 200   | 03:00 |
+| 119              | 1001     | 1132       | 1      | 200   | 05:00 |
 ```
 
 ### Featuers 4: User informations.
@@ -138,99 +142,31 @@ select * from users;
 
 ```sql
 
-create table booked(booked_id number not null primary key,
+create table booked(
+        movie_theatre_id number,
+        booked_id number primary key,
         users_id number not null,
         booked_seats number not null,
         amount number,
         payment_status varchar2(30) not null,
         booked_date timestamp default systimestamp,
-        seat_type varchar2(100),
-        constraint users_id_fk foreign key(users_id) references users(user_id),
-        constraint payment_status_ck check(payment_status in('complete','pending','cancelled')),
-        constraint seat_type_ck check(seat_type in('normal','premium','vip')));
+        constraint users_id_fk foreign key(users_id) references users (user_id),
+        constraint movie_theatre_id_fk foreign key(movie_theatre_id) references movie_theatre(movie_theatre_id),
+        constraint payment_status_ck check(payment_status in('complete','pending','cancelled')));
         
         create sequence booked_id start with 1 increment by 1;
         
-        insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
-values(booked_id.nextval,398383,10,'complete','premium');
-
-insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
-values(booked_id.nextval,398384,7,'complete','premium');
-
-insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
-values(booked_id.nextval,398385,8,'complete','premium');
-
-insert into booked(booked_id,users_id,booked_seats,payment_status,seat_type)
-values(booked_id.nextval,398386,10,'complete','premium');
-
         
-| booked_id | user_id | booked_seats | payment_status | booked_timing                  | price | seat_type |
-|-----------|---------|--------------|----------------|--------------------------------|-------|-----------|
-| 1         | 398383  | 10           | complete       | 02-01-20 07:39:59.521000000 PM | 120   | premium   |
-| 2         | 398384  | 7            | complete       | 02-01-20 07:40:09.769000000 PM | 100   | normal    |
-| 3         | 398385  | 8            | complete       | 02-01-20 07:40:16.019000000 PM | 150   | vip       |
+insert into booked(movie_theatre_id,booked_id,users_id,booked_seats,amount,payment_status)
+values(115,booked_id.nextval,11159,10,'complete',150);
 
+    
+    select * from booked_id;
+    
+| booked_id | user_id | movie_id | number_seats | amount | payment_status |      booked_timing             |
+|-----------|---------|----------|--------------|--------|----------------|--------------------------------|
+| 1         | 11156   | 115      | 2            | 300    | complete       | 25-01-20 06:02:36.397000000 PM |
+| 2         | 11157   | 115      | 4            | 600    | pending        | 25-01-20 06:02:59.665000000 PM |
+| 3         | 11159   | 115      | 1            | 150    | complete       | 25-01-20 06:03:21.616000000 PM |
 ```
-
-### Scenarios:
-
-
-1. select * from movie_theatre where movie_timing ='12:00:00 pm';
-
-
-| movie_id | theater_id | active | movie_time  |
-|----------|------------|--------|-------------|
-| 111      | 1          | 1      | 12:00:00 pm |
-| 222      | 1          | 1      | 12:00:00 pm |
-| 333      | 1          | 1      | 12:00:00 pm |
-
-
-
-2. select * from movie where movie_id ='111';
-
-| movie_name | movie_id | movie_type | price |
-|------------|----------|------------|-------|
-| charlie    | 111      | Hindi      | 200   |
-
-
-
-3. select * from movie_theatre mt inner join movie m on mt.movie_id = m.movie_id inner join theatre t on mt.theatre_id =t.theatre_id;
-
-
-| active | movie_time  | movie_name        | movie_id | movie_type | price | theatre_name |price|theatre_name      | theatre_rating  |
-|--------|-------------|-------------------|----------|------------|-------|--------------|-----|------------------|-----------------|
-| 1      | 3:00:00 pm  | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4               |
-| 1      | 3:00:00 pm  | pyar prema kadhal | 222      | Tamil      | 100   | PVR          | 100 | sky walk chennai | 3               |
-| 1      | 12:00:00 pm | Okadhal Kanmani   | 333      | Tamil      | 150   | PVR          | 100 | sky walk chennai | 4               |
-
-
-
-4. select m.movie_name,t.theatre_name,mt.movie_timing from movie m,theatre t,movie_theatre mtwhere t.theatre_id = mt.theatre_id and mt.movie_id = m.movie_id;
-
-| movi_name         | theater_name | movie_time  |
-|-------------------|--------------|-------------|
-| Okadhal Kanmani   | PVR          | 3:00:00 pm  |
-| pyar prema kadhal | PVR          | 3:00:00 pm  |
-| Okadhal Kanmani   | PVR          | 12:00:00 pm |
-| pyar prema kadhal | PVR          | 12:00:00 pm |
-| charlie           | PVR          | 12:00:00 pm |
-| pyar prema kadhal | inox         | 6:00:00 pm  |
-| Okadhal Kanmani   | Rohini       | 3:00:00 pm  |
-
-
-5.Functions:
-
-create or replace function get_booked_seats(i_users_id number)
-Return number as 
-
-v_ticket_booked number;
-
-Begin
-
-select booked_seats into v_ticket_booked from booked
-where users_id =i_users_id ;
-
-Return v_ticket_booked;
-END get_booked_seats;
-
 
