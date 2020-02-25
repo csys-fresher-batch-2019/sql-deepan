@@ -152,6 +152,7 @@ create table booked(
         amount number,
         payment_status varchar2(30) not null,
         booked_date timestamp default systimestamp,
+        show_date date,
         constraint users_id_fk foreign key(users_id) references users (user_id),
         constraint movie_theatre_id_fk foreign key(movie_theatre_id) references movie_theatre(movie_theatre_id),
         constraint payment_status_ck check(payment_status in('complete','pending','cancelled')));
@@ -165,10 +166,10 @@ values(115,booked_id.nextval,11159,10,'complete',150);
     
     select * from booked_id;
     
-| booked_id | user_id | movie_id | number_seats | amount | booked _status |      booked_timing             |    show_date
-|-----------|---------|----------|--------------|--------|----------------|--------------------------------|--------------------------
-| 1         | 11156   | 115      | 2            | 300    | complete       | 25-01-20 06:02:36.397000000 PM | 24-02-2020
-| 2         | 11157   | 115      | 4            | 600    | complete       | 25-01-20 06:02:59.665000000 PM | 25-02-2020
-| 3         | 11159   | 115      | 1            | 150    | complete       | 25-01-20 06:03:21.616000000 PM |  24-02-2020
+| booked_id | user_id | movie_id | number_seats | amount | booked _status |      booked_timing             |    show_date  |
+|-----------|---------|----------|--------------|--------|----------------|--------------------------------|---------------|
+| 1         | 11156   | 115      | 2            | 300    | complete       | 25-01-20 06:02:36.397000000 PM | 24-02-2020    | 
+| 2         | 11157   | 115      | 4            | 600    | complete       | 25-01-20 06:02:59.665000000 PM | 25-02-2020    |
+| 3         | 11159   | 115      | 1            | 150    | complete       | 25-01-20 06:03:21.616000000 PM |  24-02-2020   |
 ```
 
