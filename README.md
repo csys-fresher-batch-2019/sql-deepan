@@ -17,22 +17,23 @@ create table movie(
         movie_rating number,
         movie_duration number,
         released_date date,
+        image_url varchar2(100);
         constraint movie_id primary key (movie_id),
         constraint movie_type_ck check(movie_type in('comedy','horror','action','historical','Romance')),
         constraint movie_language_ck check(movie_language in('English','Tamil','Hindi','Telugu','Malayalam'))); 
         create sequence movie_id_seq start with 999;
         
         
-insert into movie(movie_id,movie_name,movie_type,movie_language,movie_rating,movie_duration,released_date)
+insert into movie(movie_id,movie_name,movie_type,movie_language,movie_rating,movie_duration,released_date,image_url)
 values(movie_id_seq.nextval,'charlie','Romance','Hindi',5,3,to_date('2020-01-25','YYYY-MM-DD'));
 
 select * from movie;
 
-| movie_name        | movie_id | movie_tpe | movie_language | movie_rating | movie_duration | released_date |
-|-------------------|----------|-----------|----------------|--------------|----------------|---------------|
-| charlie           | 999      | Romance   | Hindi          | 5            | 3              | 25-01-20      |
-| Ok kanmani        | 1000     | Romance   | Tamil          | 4            | 3              | 12-10-19      |
-| Pyar prema kadhal | 1001     | Romance   | Tamil          | 5            | 2              | 22-10-19      |
+| movie_name        | movie_id | movie_tpe | movie_language | movie_rating | movie_duration | released_date |   image_url   |
+|-------------------|----------|-----------|----------------|--------------|----------------|---------------|---------------|
+| charlie           | 999      | Romance   | Hindi          | 5            | 3              | 25-01-20      | charlie.jpg   |
+| Ok kanmani        | 1000     | Romance   | Tamil          | 4            | 3              | 12-10-19      | okkanmani.jpg |
+| Pyar prema kadhal | 1001     | Romance   | Tamil          | 5            | 2              | 22-10-19      |   prema.jpg   |
 
 ```
 
@@ -44,6 +45,7 @@ create table theatre(theatre_name varchar2(30),
     number_seats number,
     theatre_address varchar2(40) not null,
     theatre_rating number,
+    theatre_image_url varchar2(100);
     constraint theatre_uq unique(theatre_name,theatre_id),
     constraint theatre_id primary key (theatre_id));
 
@@ -58,11 +60,11 @@ values('Rohini',03,300,'Rohini koyambedu',4);
 
 select * from theatre;
 
-| theatre_name | theater_id | number_seats | theatre_address      | theatre_rating |
-|--------------|------------|--------------|----------------------|----------------|
-| PVR          | 1          | 100          | sky walk chennai     | 4              |
-| inox         | 2          | 200          | chandra mall chennai | 3              |
-| Rohini       | 3          | 300          | Rohini koyambedu     | 4              |
+| theatre_name | theater_id | number_seats | theatre_address      | theatre_rating |theatre_image_url   |
+|--------------|------------|--------------|----------------------|----------------|--------------------|
+| PVR          | 1          | 100          | sky walk chennai     | 4              |   pvr.jpg          |
+| inox         | 2          | 200          | chandra mall chennai | 3              |   inox.jpg         |
+| Rohini       | 3          | 300          | Rohini koyambedu     | 4              |   rohini.jpg       |
 
 ```
 
@@ -163,10 +165,10 @@ values(115,booked_id.nextval,11159,10,'complete',150);
     
     select * from booked_id;
     
-| booked_id | user_id | movie_id | number_seats | amount | payment_status |      booked_timing             |
-|-----------|---------|----------|--------------|--------|----------------|--------------------------------|
-| 1         | 11156   | 115      | 2            | 300    | complete       | 25-01-20 06:02:36.397000000 PM |
-| 2         | 11157   | 115      | 4            | 600    | pending        | 25-01-20 06:02:59.665000000 PM |
-| 3         | 11159   | 115      | 1            | 150    | complete       | 25-01-20 06:03:21.616000000 PM |
+| booked_id | user_id | movie_id | number_seats | amount | booked _status |      booked_timing             |    show_date
+|-----------|---------|----------|--------------|--------|----------------|--------------------------------|--------------------------
+| 1         | 11156   | 115      | 2            | 300    | complete       | 25-01-20 06:02:36.397000000 PM | 24-02-2020
+| 2         | 11157   | 115      | 4            | 600    | complete       | 25-01-20 06:02:59.665000000 PM | 25-02-2020
+| 3         | 11159   | 115      | 1            | 150    | complete       | 25-01-20 06:03:21.616000000 PM |  24-02-2020
 ```
 
